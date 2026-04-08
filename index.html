@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Lab — Microinteractions Playground</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/utilities.css" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-canvas" aria-hidden="true">
+    <canvas id="bg-canvas"></canvas>
+  </div>
+
+  <!-- Top navigation bar -->
+  <header class="topbar" role="banner">
+    <div class="topbar__brand">
+      <span class="topbar__logo" aria-hidden="true">⬡</span>
+      <span class="topbar__title">UI Lab</span>
+      <span class="topbar__version">v1.0</span>
+    </div>
+    <div class="topbar__center">
+      <div class="search-box" role="search">
+        <span class="search-box__icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <input
+          id="search-input"
+          class="search-box__input"
+          type="search"
+          placeholder="Search components…"
+          aria-label="Search components"
+          autocomplete="off"
+        />
+        <kbd class="search-box__hint">⌘K</kbd>
+      </div>
+    </div>
+    <div class="topbar__actions">
+      <button class="topbar__btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark theme">
+        <svg class="icon icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="topbar__btn" id="settings-toggle" aria-label="Open control panel" title="Open control panel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar navigation -->
+  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Component sections">
+    <div class="sidebar__inner">
+      <ul class="sidebar__nav" id="sidebar-nav">
+        <li class="sidebar__item">
+          <a class="sidebar__link is-active" href="#buttons" data-section="buttons">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="4"/></svg>
+            </span>
+            <span>Buttons</span>
+            <span class="sidebar__count">6</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#toggles" data-section="toggles">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="22" height="14" rx="7"/><circle cx="16" cy="12" r="4" fill="currentColor"/></svg>
+            </span>
+            <span>Toggles</span>
+            <span class="sidebar__count">4</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#loaders" data-section="loaders">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </span>
+            <span>Loaders</span>
+            <span class="sidebar__count">5</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#cards" data-section="cards">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span>Cards</span>
+            <span class="sidebar__count">4</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#inputs" data-section="inputs">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </span>
+            <span>Inputs</span>
+            <span class="sidebar__count">5</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#navigation" data-section="navigation">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </span>
+            <span>Navigation</span>
+            <span class="sidebar__count">4</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#feedback" data-section="feedback">
+            <span class="sidebar__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </span>
+            <span>Feedback</span>
+            <span class="sidebar__count">4</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar__footer">
+        <span class="sidebar__footer-text">32 components</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav toggle -->
+  <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span class="hamburger" aria-hidden="true"></span>
+  </button>
+
+  <!-- Main content area -->
+  <main class="main" id="main" role="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__content">
+        <div class="hero__badge">Pure HTML · CSS · JS</div>
+        <h1 class="hero__title">UI <em>Microinteractions</em><br>Playground</h1>
+        <p class="hero__subtitle">A handcrafted collection of modern UI components, built without frameworks. Demonstrating deep mastery of core frontend fundamentals.</p>
+        <div class="hero__actions">
+          <button class="btn btn--primary btn--lg" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">
+            Explore Components
+          </button>
+          <button class="btn btn--ghost btn--lg" id="hero-random-btn">
+            Surprise Me ✦
+          </button>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat"><strong>32</strong><span>Components</span></div>
+          <div class="hero__stat"><strong>7</strong><span>Sections</span></div>
+          <div class="hero__stat"><strong>0</strong><span>Dependencies</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: BUTTONS ── -->
+    <section class="section" id="buttons" data-section="buttons">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">01</span>
+          <h2 class="section__title">Buttons</h2>
+        </div>
+        <p class="section__desc">Interactive button components with hover, active, loading, and ripple microinteractions.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Primary Button -->
+        <article class="component-card" data-component="btn-primary" data-category="buttons" data-tags="button primary action">
+          <div class="component-card__preview">
+            <button class="btn btn--primary" data-ripple>Primary Action</button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Primary Button</h3>
+            <p class="component-card__desc">Main call-to-action with ripple effect and glow on hover.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-primary" aria-label="View details">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-primary" aria-label="Copy code">Copy</button>
+          </div>
+        </article>
+
+        <!-- Ghost Button -->
+        <article class="component-card" data-component="btn-ghost" data-category="buttons" data-tags="button ghost outline secondary">
+          <div class="component-card__preview">
+            <button class="btn btn--ghost" data-ripple>Ghost Button</button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Ghost Button</h3>
+            <p class="component-card__desc">Outlined style with border glow on hover and fill-in animation.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-ghost">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-ghost">Copy</button>
+          </div>
+        </article>
+
+        <!-- Loading Button -->
+        <article class="component-card" data-component="btn-loading" data-category="buttons" data-tags="button loading spinner state">
+          <div class="component-card__preview">
+            <button class="btn btn--primary btn--loading-demo" id="btn-loading-demo" data-ripple>
+              <span class="btn__label">Click to Load</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Loading State</h3>
+            <p class="component-card__desc">Button transitions to a spinner loading state on click.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-loading">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-loading">Copy</button>
+          </div>
+        </article>
+
+        <!-- Icon Button -->
+        <article class="component-card" data-component="btn-icon" data-category="buttons" data-tags="button icon fab action">
+          <div class="component-card__preview" style="display:flex;gap:12px;align-items:center">
+            <button class="btn btn--icon btn--primary" aria-label="Add item" data-ripple>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button class="btn btn--icon btn--ghost" aria-label="Bookmark" data-ripple>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="btn btn--icon btn--danger" aria-label="Delete" data-ripple>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            </button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Icon Buttons</h3>
+            <p class="component-card__desc">Compact icon-only buttons in primary, ghost, and danger variants.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-icon">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-icon">Copy</button>
+          </div>
+        </article>
+
+        <!-- Gradient Button -->
+        <article class="component-card" data-component="btn-gradient" data-category="buttons" data-tags="button gradient glow neon">
+          <div class="component-card__preview">
+            <button class="btn btn--gradient" data-ripple>Gradient Glow</button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Gradient Button</h3>
+            <p class="component-card__desc">Animated gradient background with glow shadow effect.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-gradient">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-gradient">Copy</button>
+          </div>
+        </article>
+
+        <!-- Button Group -->
+        <article class="component-card" data-component="btn-group" data-category="buttons" data-tags="button group segmented control">
+          <div class="component-card__preview">
+            <div class="btn-group" role="group" aria-label="View options">
+              <button class="btn-group__btn is-active">Day</button>
+              <button class="btn-group__btn">Week</button>
+              <button class="btn-group__btn">Month</button>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Button Group</h3>
+            <p class="component-card__desc">Segmented control with sliding active indicator animation.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="btn-group">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="btn-group">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: TOGGLES ── -->
+    <section class="section" id="toggles" data-section="toggles">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">02</span>
+          <h2 class="section__title">Toggles & Switches</h2>
+        </div>
+        <p class="section__desc">Animated toggles with elastic movement, color transitions, and satisfying tactile feedback.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Classic Toggle -->
+        <article class="component-card" data-component="toggle-classic" data-category="toggles" data-tags="toggle switch boolean on off">
+          <div class="component-card__preview">
+            <label class="toggle toggle--classic" aria-label="Classic toggle">
+              <input class="toggle__input" type="checkbox" role="switch" />
+              <span class="toggle__track">
+                <span class="toggle__thumb"></span>
+              </span>
+              <span class="toggle__label">Enabled</span>
+            </label>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Classic Toggle</h3>
+            <p class="component-card__desc">Smooth sliding toggle with elastic spring animation and color transition.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="toggle-classic">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="toggle-classic">Copy</button>
+          </div>
+        </article>
+
+        <!-- Icon Toggle -->
+        <article class="component-card" data-component="toggle-icon" data-category="toggles" data-tags="toggle switch icon sun moon">
+          <div class="component-card__preview" style="display:flex;gap:16px;align-items:center">
+            <label class="toggle toggle--icon" aria-label="Icon toggle sun/moon">
+              <input class="toggle__input" type="checkbox" role="switch" />
+              <span class="toggle__track">
+                <span class="toggle__thumb">
+                  <svg class="toggle__icon toggle__icon--off" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+                  <svg class="toggle__icon toggle__icon--on" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+              </span>
+            </label>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Icon Toggle</h3>
+            <p class="component-card__desc">Toggle with contextual icons that fade between states.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="toggle-icon">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="toggle-icon">Copy</button>
+          </div>
+        </article>
+
+        <!-- Checkbox -->
+        <article class="component-card" data-component="checkbox-custom" data-category="toggles" data-tags="checkbox custom animated check">
+          <div class="component-card__preview" style="display:flex;flex-direction:column;gap:10px">
+            <label class="checkbox" aria-label="Option A">
+              <input class="checkbox__input" type="checkbox" checked />
+              <span class="checkbox__box">
+                <svg class="checkbox__check" viewBox="0 0 12 10" fill="none">
+                  <polyline points="1,5 4,9 11,1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="checkbox__label">Option selected</span>
+            </label>
+            <label class="checkbox" aria-label="Option B">
+              <input class="checkbox__input" type="checkbox" />
+              <span class="checkbox__box"></span>
+              <span class="checkbox__label">Option unselected</span>
+            </label>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Custom Checkbox</h3>
+            <p class="component-card__desc">Animated checkmark with draw-on SVG path and ripple focus effect.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="checkbox-custom">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="checkbox-custom">Copy</button>
+          </div>
+        </article>
+
+        <!-- Radio Group -->
+        <article class="component-card" data-component="radio-custom" data-category="toggles" data-tags="radio button custom animated select">
+          <div class="component-card__preview" style="display:flex;flex-direction:column;gap:10px">
+            <label class="radio" aria-label="Option 1">
+              <input class="radio__input" type="radio" name="demo-radio" checked />
+              <span class="radio__dot"></span>
+              <span class="radio__label">Option Alpha</span>
+            </label>
+            <label class="radio" aria-label="Option 2">
+              <input class="radio__input" type="radio" name="demo-radio" />
+              <span class="radio__dot"></span>
+              <span class="radio__label">Option Beta</span>
+            </label>
+            <label class="radio" aria-label="Option 3">
+              <input class="radio__input" type="radio" name="demo-radio" />
+              <span class="radio__dot"></span>
+              <span class="radio__label">Option Gamma</span>
+            </label>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Radio Buttons</h3>
+            <p class="component-card__desc">Custom radio buttons with animated fill dot and ring effect.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="radio-custom">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="radio-custom">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: LOADERS ── -->
+    <section class="section" id="loaders" data-section="loaders">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">03</span>
+          <h2 class="section__title">Loaders & Spinners</h2>
+        </div>
+        <p class="section__desc">Pure CSS loading animations — no JavaScript required. Smooth, accessible, and visually polished.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Ring spinner -->
+        <article class="component-card" data-component="loader-ring" data-category="loaders" data-tags="loader spinner ring circle">
+          <div class="component-card__preview">
+            <div class="loader loader--ring" aria-label="Loading" role="status">
+              <span class="sr-only">Loading…</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Ring Spinner</h3>
+            <p class="component-card__desc">Classic ring spinner with smooth rotation and gradient fade.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="loader-ring">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="loader-ring">Copy</button>
+          </div>
+        </article>
+
+        <!-- Bouncing dots -->
+        <article class="component-card" data-component="loader-dots" data-category="loaders" data-tags="loader dots bounce typing">
+          <div class="component-card__preview">
+            <div class="loader loader--dots" aria-label="Loading" role="status">
+              <span class="loader__dot"></span>
+              <span class="loader__dot"></span>
+              <span class="loader__dot"></span>
+              <span class="sr-only">Loading…</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Bouncing Dots</h3>
+            <p class="component-card__desc">Three dots with staggered bounce animation, like a typing indicator.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="loader-dots">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="loader-dots">Copy</button>
+          </div>
+        </article>
+
+        <!-- Wave bars -->
+        <article class="component-card" data-component="loader-wave" data-category="loaders" data-tags="loader wave bars audio equalizer">
+          <div class="component-card__preview">
+            <div class="loader loader--wave" aria-label="Loading" role="status">
+              <span class="loader__bar"></span>
+              <span class="loader__bar"></span>
+              <span class="loader__bar"></span>
+              <span class="loader__bar"></span>
+              <span class="loader__bar"></span>
+              <span class="sr-only">Loading…</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Wave Bars</h3>
+            <p class="component-card__desc">Audio equalizer-style wave animation with staggered heights.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="loader-wave">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="loader-wave">Copy</button>
+          </div>
+        </article>
+
+        <!-- Pulse ring -->
+        <article class="component-card" data-component="loader-pulse" data-category="loaders" data-tags="loader pulse ring radar sonar">
+          <div class="component-card__preview">
+            <div class="loader loader--pulse" aria-label="Loading" role="status">
+              <span class="sr-only">Loading…</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Pulse Ring</h3>
+            <p class="component-card__desc">Concentric rings expanding outward like a radar sonar pulse.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="loader-pulse">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="loader-pulse">Copy</button>
+          </div>
+        </article>
+
+        <!-- Progress bar -->
+        <article class="component-card" data-component="loader-progress" data-category="loaders" data-tags="loader progress bar determinate">
+          <div class="component-card__preview" style="width:100%;max-width:220px">
+            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar__track">
+                <div class="progress-bar__fill" style="width:65%">
+                  <span class="progress-bar__shimmer"></span>
+                </div>
+              </div>
+              <span class="progress-bar__label">65%</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Progress Bar</h3>
+            <p class="component-card__desc">Determinate progress bar with shimmer animation and label.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="loader-progress">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="loader-progress">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: CARDS ── -->
+    <section class="section" id="cards" data-section="cards">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">04</span>
+          <h2 class="section__title">Cards</h2>
+        </div>
+        <p class="section__desc">Interactive cards with 3D tilt, hover lift, glassmorphism, and expand/collapse effects.</p>
+      </div>
+
+      <div class="component-grid component-grid--cards">
+
+        <!-- Tilt Card -->
+        <article class="component-card component-card--wide" data-component="card-tilt" data-category="cards" data-tags="card 3d tilt perspective interactive">
+          <div class="component-card__preview component-card__preview--tall">
+            <div class="card card--tilt" data-tilt>
+              <div class="card__glow" aria-hidden="true"></div>
+              <div class="card__body">
+                <div class="card__avatar">
+                  <span style="font-size:1.5rem">✦</span>
+                </div>
+                <h4 class="card__title">3D Tilt Card</h4>
+                <p class="card__text">Move your cursor over this card to see the 3D perspective tilt effect in action.</p>
+                <div class="card__tags">
+                  <span class="tag">Interactive</span>
+                  <span class="tag">3D</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">3D Tilt Card</h3>
+            <p class="component-card__desc">Perspective tilt that follows the mouse cursor using requestAnimationFrame.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="card-tilt">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="card-tilt">Copy</button>
+          </div>
+        </article>
+
+        <!-- Glass Card -->
+        <article class="component-card component-card--wide" data-component="card-glass" data-category="cards" data-tags="card glass blur frosted ui">
+          <div class="component-card__preview component-card__preview--tall" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+            <div class="card card--glass">
+              <div class="card__body">
+                <div class="card__icon-row">
+                  <span class="card__chip">PRO</span>
+                </div>
+                <h4 class="card__title">Glassmorphism</h4>
+                <p class="card__text">Frosted glass effect using backdrop-filter with blur and transparency.</p>
+                <div class="card__stat-row">
+                  <div class="card__stat"><strong>99%</strong><span>Uptime</span></div>
+                  <div class="card__stat"><strong>4ms</strong><span>Latency</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Glass Card</h3>
+            <p class="component-card__desc">Frosted glass card using backdrop-filter blur and semi-transparent background.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="card-glass">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="card-glass">Copy</button>
+          </div>
+        </article>
+
+        <!-- Expandable Card -->
+        <article class="component-card component-card--wide" data-component="card-expand" data-category="cards" data-tags="card accordion expand collapse details">
+          <div class="component-card__preview component-card__preview--tall">
+            <div class="card card--expand" id="expand-card-demo">
+              <div class="card__body">
+                <div class="card__expand-header" data-expand-toggle="expand-card-demo">
+                  <h4 class="card__title">Expandable Card</h4>
+                  <button class="card__expand-btn" aria-expanded="false" aria-label="Expand card">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+                  </button>
+                </div>
+                <p class="card__text">Click the arrow to reveal more content with a smooth height animation.</p>
+                <div class="card__expandable">
+                  <div class="card__expanded-content">
+                    <p>This content smoothly expands and collapses using CSS max-height transitions with overflow hidden — no JavaScript height calculation needed!</p>
+                    <div class="card__tags" style="margin-top:12px">
+                      <span class="tag">CSS</span>
+                      <span class="tag">Smooth</span>
+                      <span class="tag">Accessible</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Expandable Card</h3>
+            <p class="component-card__desc">Accordion-style card that smoothly expands to reveal extra content.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="card-expand">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="card-expand">Copy</button>
+          </div>
+        </article>
+
+        <!-- Stats Card -->
+        <article class="component-card component-card--wide" data-component="card-stats" data-category="cards" data-tags="card stats metrics dashboard widget">
+          <div class="component-card__preview component-card__preview--tall">
+            <div class="card card--stats">
+              <div class="card__body">
+                <div class="card__header-row">
+                  <span class="card__label">Total Revenue</span>
+                  <span class="tag tag--success">+12.5%</span>
+                </div>
+                <div class="card__metric">$84,250</div>
+                <div class="card__sparkline" aria-hidden="true">
+                  <svg viewBox="0 0 120 40" preserveAspectRatio="none">
+                    <polyline class="sparkline__line" points="0,35 20,28 40,32 60,18 80,22 100,8 120,14" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline class="sparkline__fill" points="0,35 20,28 40,32 60,18 80,22 100,8 120,14 120,40 0,40" fill="url(#sparkGrad)" stroke="none"/>
+                    <defs>
+                      <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <p class="card__subtext">vs $74,870 last month</p>
+              </div>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Stats Card</h3>
+            <p class="component-card__desc">Dashboard-style metric card with inline SVG sparkline chart.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="card-stats">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="card-stats">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: INPUTS ── -->
+    <section class="section" id="inputs" data-section="inputs">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">05</span>
+          <h2 class="section__title">Inputs & Forms</h2>
+        </div>
+        <p class="section__desc">Form elements with floating labels, animated focus states, and inline validation feedback.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Floating Label Input -->
+        <article class="component-card" data-component="input-float" data-category="inputs" data-tags="input form float label text field">
+          <div class="component-card__preview" style="width:100%;max-width:260px">
+            <div class="field field--float">
+              <input class="field__input" type="text" id="demo-name" placeholder=" " autocomplete="off" />
+              <label class="field__label" for="demo-name">Full Name</label>
+              <span class="field__bar"></span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Floating Label</h3>
+            <p class="component-card__desc">Label floats up on focus with an animated underline bar.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="input-float">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="input-float">Copy</button>
+          </div>
+        </article>
+
+        <!-- Validated Input -->
+        <article class="component-card" data-component="input-validate" data-category="inputs" data-tags="input validation error success form">
+          <div class="component-card__preview" style="width:100%;max-width:260px;display:flex;flex-direction:column;gap:16px">
+            <div class="field field--float is-success">
+              <input class="field__input" type="email" id="demo-email-ok" value="hello@example.com" placeholder=" " />
+              <label class="field__label" for="demo-email-ok">Email</label>
+              <span class="field__bar"></span>
+              <span class="field__icon field__icon--check" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+              </span>
+            </div>
+            <div class="field field--float is-error">
+              <input class="field__input" type="text" id="demo-user-err" value="x" placeholder=" " />
+              <label class="field__label" for="demo-user-err">Username</label>
+              <span class="field__bar"></span>
+              <span class="field__msg">Min 3 characters required</span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Validation States</h3>
+            <p class="component-card__desc">Success and error states with animated icons and helper messages.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="input-validate">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="input-validate">Copy</button>
+          </div>
+        </article>
+
+        <!-- Password Field -->
+        <article class="component-card" data-component="input-password" data-category="inputs" data-tags="input password strength show hide">
+          <div class="component-card__preview" style="width:100%;max-width:260px">
+            <div class="field field--float field--password">
+              <input class="field__input" type="password" id="demo-pass" placeholder=" " autocomplete="new-password" />
+              <label class="field__label" for="demo-pass">Password</label>
+              <span class="field__bar"></span>
+              <button class="field__toggle-pass" type="button" aria-label="Toggle password visibility">
+                <svg class="icon--eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon--eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+              <div class="strength-meter" id="strength-demo">
+                <div class="strength-meter__bar">
+                  <span class="strength-meter__fill"></span>
+                </div>
+                <span class="strength-meter__label">Strength</span>
+              </div>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Password Field</h3>
+            <p class="component-card__desc">Password input with visibility toggle and animated strength meter.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="input-password">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="input-password">Copy</button>
+          </div>
+        </article>
+
+        <!-- Search Input -->
+        <article class="component-card" data-component="input-search" data-category="inputs" data-tags="input search filter live animated">
+          <div class="component-card__preview" style="width:100%;max-width:260px">
+            <div class="search-field">
+              <span class="search-field__icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </span>
+              <input class="search-field__input" type="search" placeholder="Search anything…" id="demo-search-field" autocomplete="off" />
+              <button class="search-field__clear" type="button" aria-label="Clear search" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Search Field</h3>
+            <p class="component-card__desc">Expandable search input with animated icon and clear button.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="input-search">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="input-search">Copy</button>
+          </div>
+        </article>
+
+        <!-- Range Slider -->
+        <article class="component-card" data-component="input-range" data-category="inputs" data-tags="input range slider track thumb number">
+          <div class="component-card__preview" style="width:100%;max-width:260px">
+            <div class="range-field">
+              <div class="range-field__header">
+                <label class="range-field__label" for="demo-range">Opacity</label>
+                <output class="range-field__value" id="demo-range-val">75</output>
+              </div>
+              <input class="range-field__input" type="range" id="demo-range" min="0" max="100" value="75" />
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Range Slider</h3>
+            <p class="component-card__desc">Custom styled range slider with dynamic fill track and live value display.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="input-range">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="input-range">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: NAVIGATION ── -->
+    <section class="section" id="navigation" data-section="navigation">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">06</span>
+          <h2 class="section__title">Navigation</h2>
+        </div>
+        <p class="section__desc">Navigation patterns with animated indicators, hover effects, and smooth transitions.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Tab Bar -->
+        <article class="component-card component-card--wide" data-component="nav-tabs" data-category="navigation" data-tags="tabs navigation underline indicator animated">
+          <div class="component-card__preview">
+            <div class="tabs" role="tablist" id="demo-tabs">
+              <button class="tabs__tab is-active" role="tab" aria-selected="true" data-tab="tab1">Overview</button>
+              <button class="tabs__tab" role="tab" aria-selected="false" data-tab="tab2">Analytics</button>
+              <button class="tabs__tab" role="tab" aria-selected="false" data-tab="tab3">Settings</button>
+              <button class="tabs__tab" role="tab" aria-selected="false" data-tab="tab4">History</button>
+              <span class="tabs__indicator" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Tab Bar</h3>
+            <p class="component-card__desc">Animated sliding underline indicator that follows the active tab.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="nav-tabs">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="nav-tabs">Copy</button>
+          </div>
+        </article>
+
+        <!-- Breadcrumb -->
+        <article class="component-card component-card--wide" data-component="nav-breadcrumb" data-category="navigation" data-tags="breadcrumb navigation path location hierarchy">
+          <div class="component-card__preview">
+            <nav aria-label="Breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb__item"><a class="breadcrumb__link" href="#navigation">Home</a></li>
+                <li class="breadcrumb__item"><a class="breadcrumb__link" href="#navigation">Components</a></li>
+                <li class="breadcrumb__item"><a class="breadcrumb__link" href="#navigation">Navigation</a></li>
+                <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">Breadcrumb</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Breadcrumb</h3>
+            <p class="component-card__desc">Navigational breadcrumb trail with hover underline animations.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="nav-breadcrumb">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="nav-breadcrumb">Copy</button>
+          </div>
+        </article>
+
+        <!-- Pagination -->
+        <article class="component-card component-card--wide" data-component="nav-pagination" data-category="navigation" data-tags="pagination pages next prev numbered">
+          <div class="component-card__preview">
+            <nav class="pagination" aria-label="Pagination">
+              <button class="pagination__btn pagination__btn--prev" aria-label="Previous page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+              </button>
+              <button class="pagination__page">1</button>
+              <button class="pagination__page is-active" aria-current="page">2</button>
+              <button class="pagination__page">3</button>
+              <span class="pagination__ellipsis">…</span>
+              <button class="pagination__page">9</button>
+              <button class="pagination__btn pagination__btn--next" aria-label="Next page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+              </button>
+            </nav>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Pagination</h3>
+            <p class="component-card__desc">Page navigation with active indicator and hover scale transitions.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="nav-pagination">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="nav-pagination">Copy</button>
+          </div>
+        </article>
+
+        <!-- Dropdown Menu -->
+        <article class="component-card component-card--wide" data-component="nav-dropdown" data-category="navigation" data-tags="dropdown menu context actions list">
+          <div class="component-card__preview" style="position:relative;height:180px;display:flex;align-items:flex-start;justify-content:center;padding-top:12px">
+            <div class="dropdown is-open" id="demo-dropdown">
+              <button class="dropdown__trigger btn btn--ghost btn--sm">
+                Options
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+              </button>
+              <ul class="dropdown__menu" role="menu">
+                <li class="dropdown__item" role="menuitem">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  Edit
+                </li>
+                <li class="dropdown__item" role="menuitem">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Duplicate
+                </li>
+                <li class="dropdown__divider" role="separator"></li>
+                <li class="dropdown__item dropdown__item--danger" role="menuitem">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                  Delete
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Dropdown Menu</h3>
+            <p class="component-card__desc">Context menu with smooth scale+fade entrance animation and item hover.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="nav-dropdown">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="nav-dropdown">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION: FEEDBACK ── -->
+    <section class="section" id="feedback" data-section="feedback">
+      <div class="section__header">
+        <div class="section__title-wrap">
+          <span class="section__number">07</span>
+          <h2 class="section__title">Feedback</h2>
+        </div>
+        <p class="section__desc">Toast notifications, alert banners, badges, and tooltips with smooth entrance animations.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Toasts -->
+        <article class="component-card component-card--wide" data-component="toast" data-category="feedback" data-tags="toast notification alert snackbar message">
+          <div class="component-card__preview" style="display:flex;flex-direction:column;gap:10px;width:100%">
+            <button class="btn btn--primary btn--sm" id="show-toast-success">Success Toast</button>
+            <button class="btn btn--ghost btn--sm" id="show-toast-error">Error Toast</button>
+            <button class="btn btn--ghost btn--sm" id="show-toast-info">Info Toast</button>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Toast Notifications</h3>
+            <p class="component-card__desc">Animated slide-in notifications that auto-dismiss with a progress bar.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="toast">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="toast">Copy</button>
+          </div>
+        </article>
+
+        <!-- Alerts -->
+        <article class="component-card component-card--wide" data-component="alert-banner" data-category="feedback" data-tags="alert banner info warning error status">
+          <div class="component-card__preview" style="display:flex;flex-direction:column;gap:10px;width:100%">
+            <div class="alert alert--info" role="alert">
+              <svg class="alert__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>Your changes have been saved automatically.</span>
+              <button class="alert__close" aria-label="Dismiss alert">×</button>
+            </div>
+            <div class="alert alert--warning" role="alert">
+              <svg class="alert__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>Account storage is 80% full.</span>
+              <button class="alert__close" aria-label="Dismiss alert">×</button>
+            </div>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Alert Banners</h3>
+            <p class="component-card__desc">Dismissable alert banners in info, warning, success, and error variants.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="alert-banner">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="alert-banner">Copy</button>
+          </div>
+        </article>
+
+        <!-- Badges -->
+        <article class="component-card" data-component="badge" data-category="feedback" data-tags="badge tag label status pill chip notification">
+          <div class="component-card__preview" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+            <span class="badge badge--primary">Primary</span>
+            <span class="badge badge--success">Success</span>
+            <span class="badge badge--warning">Warning</span>
+            <span class="badge badge--danger">Error</span>
+            <span class="badge badge--outline">Outline</span>
+            <span class="badge badge--dot badge--success">Live</span>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Badges & Tags</h3>
+            <p class="component-card__desc">Status badges in multiple variants including an animated live dot.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="badge">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="badge">Copy</button>
+          </div>
+        </article>
+
+        <!-- Tooltip -->
+        <article class="component-card" data-component="tooltip" data-category="feedback" data-tags="tooltip popover hint label hover">
+          <div class="component-card__preview" style="display:flex;gap:16px;align-items:center;justify-content:center">
+            <span class="tooltip-wrap" data-tooltip="This is a top tooltip" data-tooltip-pos="top">
+              <button class="btn btn--ghost btn--sm">Hover me</button>
+            </span>
+            <span class="tooltip-wrap" data-tooltip="Right-side tooltip!" data-tooltip-pos="right">
+              <button class="btn btn--ghost btn--sm">Right →</button>
+            </span>
+          </div>
+          <div class="component-card__meta">
+            <h3 class="component-card__name">Tooltips</h3>
+            <p class="component-card__desc">CSS-powered tooltips that fade and slide in from any direction.</p>
+          </div>
+          <div class="component-card__actions">
+            <button class="cc-btn cc-btn--view" data-modal="tooltip">View</button>
+            <button class="cc-btn cc-btn--copy" data-copy="tooltip">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast container -->
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-label="Notifications" role="region"></div>
+
+  <!-- Control Panel Drawer -->
+  <aside class="control-panel" id="control-panel" aria-label="Control panel" hidden>
+    <div class="control-panel__header">
+      <h2 class="control-panel__title">Control Panel</h2>
+      <button class="control-panel__close" id="control-panel-close" aria-label="Close control panel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="control-panel__body">
+
+      <div class="cp-group">
+        <label class="cp-label">Primary Color</label>
+        <div class="cp-swatches" id="cp-color-swatches">
+          <button class="cp-swatch is-active" data-color="#6366f1" style="background:#6366f1" title="Indigo" aria-label="Indigo"></button>
+          <button class="cp-swatch" data-color="#8b5cf6" style="background:#8b5cf6" title="Violet" aria-label="Violet"></button>
+          <button class="cp-swatch" data-color="#06b6d4" style="background:#06b6d4" title="Cyan" aria-label="Cyan"></button>
+          <button class="cp-swatch" data-color="#10b981" style="background:#10b981" title="Emerald" aria-label="Emerald"></button>
+          <button class="cp-swatch" data-color="#f59e0b" style="background:#f59e0b" title="Amber" aria-label="Amber"></button>
+          <button class="cp-swatch" data-color="#ef4444" style="background:#ef4444" title="Red" aria-label="Red"></button>
+        </div>
+      </div>
+
+      <div class="cp-group">
+        <label class="cp-label" for="cp-border-radius">Border Radius</label>
+        <div class="cp-slider-row">
+          <input class="range-field__input" type="range" id="cp-border-radius" min="0" max="24" value="8" step="2" />
+          <output class="cp-output" id="cp-border-radius-val">8px</output>
+        </div>
+      </div>
+
+      <div class="cp-group">
+        <label class="cp-label" for="cp-anim-speed">Animation Speed</label>
+        <div class="cp-slider-row">
+          <input class="range-field__input" type="range" id="cp-anim-speed" min="50" max="300" value="100" step="10" />
+          <output class="cp-output" id="cp-anim-speed-val">1x</output>
+        </div>
+      </div>
+
+      <div class="cp-group">
+        <label class="cp-label" for="cp-font-size">Base Font Size</label>
+        <div class="cp-slider-row">
+          <input class="range-field__input" type="range" id="cp-font-size" min="12" max="20" value="16" step="1" />
+          <output class="cp-output" id="cp-font-size-val">16px</output>
+        </div>
+      </div>
+
+      <div class="cp-group">
+        <label class="cp-label">Reduce Motion</label>
+        <label class="toggle toggle--classic" aria-label="Reduce motion">
+          <input class="toggle__input" type="checkbox" id="cp-reduce-motion" role="switch" />
+          <span class="toggle__track"><span class="toggle__thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="cp-group">
+        <button class="btn btn--ghost btn--sm" id="cp-reset" style="width:100%">Reset to Defaults</button>
+      </div>
+
+    </div>
+  </aside>
+  <div class="control-panel__overlay" id="control-panel-overlay" hidden></div>
+
+  <!-- Component Detail Modal -->
+  <div class="modal" id="component-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__backdrop" id="modal-backdrop"></div>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-title">Component Details</h2>
+        <div class="modal__header-actions">
+          <button class="cc-btn cc-btn--copy" id="modal-copy-btn">Copy Code</button>
+          <button class="modal__close" id="modal-close" aria-label="Close modal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </header>
+      <div class="modal__body">
+        <div class="modal__preview" id="modal-preview"></div>
+        <div class="modal__states" id="modal-states"></div>
+        <div class="modal__code-block" id="modal-code-block">
+          <div class="code-block">
+            <div class="code-block__tabs">
+              <div class="code-tabs" role="tablist" aria-label="Code language">
+                <button class="code-tab is-active" role="tab" aria-selected="true"  data-code-tab="html">HTML</button>
+                <button class="code-tab"           role="tab" aria-selected="false" data-code-tab="css"  hidden>CSS</button>
+                <button class="code-tab"           role="tab" aria-selected="false" data-code-tab="js"   hidden>JS</button>
+              </div>
+              <button class="code-block__copy" id="code-block-copy" aria-label="Copy code">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+            </div>
+            <pre class="code-block__pre"><code class="code-block__code" id="modal-code"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/utils/dom.js"></script>
+  <script src="js/utils/animate.js"></script>
+  <script src="js/state/store.js"></script>
+  <script src="js/components/background.js"></script>
+  <script src="js/components/navigation.js"></script>
+  <script src="js/components/buttons.js"></script>
+  <script src="js/components/toggles.js"></script>
+  <script src="js/components/cards.js"></script>
+  <script src="js/components/inputs.js"></script>
+  <script src="js/components/toasts.js"></script>
+  <script src="js/components/modal.js"></script>
+  <script src="js/components/controlpanel.js"></script>
+  <script src="js/components/search.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
