@@ -1,87 +1,101 @@
-# UI Lab — Component & Microinteraction Library
+# 🎨 UI Components Library
 
-> A component playground and microinteraction library built with pure HTML, CSS, and Vanilla JavaScript. Browse buttons, cards, toggles, toasts, inputs, modals, and navigation patterns — all with live previews and copy-ready code snippets. No frameworks, no build step.
+A collection of modern, reusable UI sections and components built for real-world projects like Shopify stores, SaaS products, and landing pages.
 
 **Live demo:** https://taras-polishchuk.github.io/ui-lab/
 
 ---
 
-## Features
+## 🧠 Overview
 
-- **10 component categories** — Buttons, Cards, Inputs, Toggles, Toasts, Navigation, Modals, Search, Loaders, and more
-- **Live interactive previews** — every component is rendered and interactive in the browser
-- **Copy-to-clipboard** — copy the HTML/CSS code for any component in one click
-- **Control panel** — adjust global theme, spacing, and animation speed
-- **Dark theme** — all components designed against a dark background
-- **State management** — lightweight custom store (`state/store.js`) for cross-component state
-- **Modular JS architecture** — each component category has its own module in `js/components/`
-- **CSS design tokens** — consistent spacing, color, radius, and animation values via CSS custom properties
-- **Zero dependencies** — no npm, no bundler, opens straight in a browser
+This project is a growing library of UI components that I use in real projects.
 
-## Tech stack
+It demonstrates my ability to:
 
-| Layer | Detail |
-|-------|--------|
-| Markup | Semantic HTML5 |
-| Styles | CSS custom properties, modular CSS files |
-| Logic | Vanilla JavaScript ES6 modules |
-| Architecture | Component-based JS modules + centralized state store |
+* build clean and reusable UI
+* structure components for scalability
+* maintain consistency across sections
+* focus on real-world usability
 
-## Project structure
+---
 
-```
-ui_lab/
-├── index.html
-├── css/
-│   ├── tokens.css        # design tokens (colors, spacing, radius, etc.)
-│   ├── base.css          # reset & global styles
-│   ├── layout.css        # page layout & grid
-│   ├── components.css    # shared component base styles
-│   ├── animations.css    # keyframes & transition utilities
-│   └── utilities.css     # helper classes
-└── js/
-    ├── main.js           # entry point — initializes all components
-    ├── components/
-    │   ├── buttons.js
-    │   ├── cards.js
-    │   ├── inputs.js
-    │   ├── toggles.js
-    │   ├── toasts.js
-    │   ├── modal.js
-    │   ├── navigation.js
-    │   ├── search.js
-    │   ├── background.js
-    │   └── controlpanel.js
-    ├── state/
-    │   └── store.js      # simple pub/sub state store
-    └── utils/
-        ├── dom.js         # DOM helpers
-        └── animate.js     # animation utilities
-```
+## 🧩 What's inside
 
-## How to run
+* Hero sections
+* Feature blocks
+* Pricing sections
+* CTA blocks
+* Layout patterns
 
-Open `index.html` directly in any modern browser — no server or build step required.
+Each component is designed to be:
 
-```bash
-open index.html        # macOS
-xdg-open index.html    # Linux
-```
+* reusable
+* responsive
+* easy to integrate into real projects
 
-> Note: because the JS uses ES modules (`type="module"`), you may need a local server if opening via `file://` on some browsers:
-> ```bash
-> npx serve .
-> # or
-> python3 -m http.server 8080
-> ```
+---
 
-## How to use
+## 🎯 Why this matters
 
-1. Click any component category in the sidebar to navigate to it
-2. Interact with the live component preview
-3. Click the **Copy** button to grab the code
-4. Use the **Control Panel** to toggle global theme or animation settings
+These are the exact types of sections used in:
 
-## Motivation
+* Shopify stores
+* landing pages
+* SaaS dashboards
+* marketing websites
 
-Built to practice writing clean, modular Vanilla JS without relying on frameworks — and to have a personal library of reusable UI patterns and microinteractions ready to drop into projects.
+---
+
+## ✨ What I focus on
+
+* clean UI implementation
+* spacing and layout consistency
+* responsive behavior
+* maintainable structure
+
+---
+
+## 🛠️ Tech Stack
+
+* HTML / CSS
+* Tailwind CSS
+* JavaScript
+
+---
+
+## 💡 Real-world usage
+
+These components can be directly used for:
+
+* Shopify theme sections
+* landing page builds
+* UI development from Figma
+* fast prototyping
+
+---
+
+## 📌 What this project shows
+
+* ability to build reusable UI systems
+* understanding of modern design patterns
+* attention to detail
+* production-ready code approach
+
+---
+
+## 👨‍💻 About me
+
+Frontend / Shopify Developer focused on building clean, high-performing storefronts and UI systems.
+
+I can help with:
+
+* Shopify theme customization
+* UI implementation from design
+* building reusable sections
+* improving UX and layout
+
+---
+
+## ⭐️
+
+If you find this useful — feel free to star the repo.
