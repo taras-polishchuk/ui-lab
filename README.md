@@ -1,101 +1,40 @@
-# 🎨 UI Components Library
+# UI Lab
 
-A collection of modern, reusable UI sections and components built for real-world projects like Shopify stores, SaaS products, and landing pages.
+A component playground and microinteraction library — buttons, cards, toggles, toasts, inputs, hero sections, pricing blocks, and more. Live previews with copy-ready code. No frameworks, no dependencies.
 
-**Live demo:** https://taras-polishchuk.github.io/ui-lab/
-
----
-
-## 🧠 Overview
-
-This project is a growing library of UI components that I use in real projects.
-
-It demonstrates my ability to:
-
-* build clean and reusable UI
-* structure components for scalability
-* maintain consistency across sections
-* focus on real-world usability
+**Live:** https://taras-polishchuk.github.io/ui-lab/
 
 ---
 
-## 🧩 What's inside
+## What it is
 
-* Hero sections
-* Feature blocks
-* Pricing sections
-* CTA blocks
-* Layout patterns
+A running collection of UI components I build and reference when working on Shopify themes and landing pages. When a client needs a specific interaction or section type, this is where I prototype and validate it before dropping it into a theme.
 
-Each component is designed to be:
-
-* reusable
-* responsive
-* easy to integrate into real projects
+Everything here is pure HTML/CSS/JS — which means it translates directly into Shopify Liquid sections without a build step or framework dependency.
 
 ---
 
-## 🎯 Why this matters
+## What's inside
 
-These are the exact types of sections used in:
-
-* Shopify stores
-* landing pages
-* SaaS dashboards
-* marketing websites
+- Microinteractions — buttons, toggles, inputs, toasts
+- Layout sections — heroes, feature blocks, pricing, CTAs
+- Cards and list patterns
+- Each component: live preview + copy-ready code
 
 ---
 
-## ✨ What I focus on
+## Tech Stack
 
-* clean UI implementation
-* spacing and layout consistency
-* responsive behavior
-* maintainable structure
+- HTML / CSS / JavaScript
+- Tailwind CSS
 
 ---
 
-## 🛠️ Tech Stack
+## My Shopify work
 
-* HTML / CSS
-* Tailwind CSS
-* JavaScript
+I build and customize Shopify storefronts professionally — Liquid sections, OS 2.0 themes, UI improvements, bug fixes. This library reflects the frontend detail I bring to that work.
 
----
-
-## 💡 Real-world usage
-
-These components can be directly used for:
-
-* Shopify theme sections
-* landing page builds
-* UI development from Figma
-* fast prototyping
-
----
-
-## 📌 What this project shows
-
-* ability to build reusable UI systems
-* understanding of modern design patterns
-* attention to detail
-* production-ready code approach
-
----
-
-## 👨‍💻 About me
-
-Frontend / Shopify Developer focused on building clean, high-performing storefronts and UI systems.
-
-I can help with:
-
-* Shopify theme customization
-* UI implementation from design
-* building reusable sections
-* improving UX and layout
-
----
-
-## ⭐️
+→ Full portfolio: [taras-polishchuk.github.io](https://taras-polishchuk.github.io)  
+→ Contact: [poli.taras.shchuk@gmail.com](mailto:poli.taras.shchuk@gmail.com)
 
 If you find this useful — feel free to star the repo.
